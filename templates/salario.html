@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white fw-bold">Calculadora de Salario Semanal</div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('salario') }}">
+                    <div class="mb-3">
+                        <label for="horas" class="form-label">Horas trabajadas en la semana</label>
+                        <input type="number" min="0" step="0.5" class="form-control" id="horas" name="horas" value="{{ resultado.horas if resultado else '' }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pago_hora" class="form-label">Pago por hora ($)</label>
+                        <input type="number" min="0.01" step="0.01" class="form-control" id="pago_hora" name="pago_hora" value="{{ resultado.pago_hora if resultado else '' }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Calcular Salario</button>
+                </form>
+
+                {% if resultado %}
+                <hr>
+                <div class="alert alert-success mb-0">
+                    <h5 class="alert-heading">Desglose de Nómina</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Horas totales capturadas:</strong> {{ resultado.horas }} hrs</li>
+                        <li><strong>Tarifa base por hora:</strong> ${{ "%.2f"|format(resultado.pago_hora) }}</li>
+                        <li><strong>Horas normales ({{ resultado.horas_normales }} hrs):</strong> ${{ "%.2f"|format(resultado.pago_normal) }}</li>
+                        <li><strong>Horas extra al doble ({{ resultado.horas_extra }} hrs):</strong> ${{ "%.2f"|format(resultado.pago_extra) }}</li>
+                        <li class="fs-5 mt-2"><strong>Salario Total:</strong> ${{ "%.2f"|format(resultado.total) }}</li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

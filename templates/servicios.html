@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="fw-bold mb-4">Nuestros Servicios</h2>
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='img/portal.jpg') }}" class="card-img-top" alt="Desarrollo Web">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Desarrollo de Portales Web</h5>
+                <p class="card-text">Diseño e implementación de aplicaciones corporativas responsivas con Python, Flask y Bootstrap.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='img/nomina.jpg') }}" class="card-img-top" alt="Automatización">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Automatización de Nómina y Ventas</h5>
+                <p class="card-text">Módulos de cálculo exacto para control de descuentos comerciales, horas extra e indicadores operativos.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='img/ti.jpg') }}" class="card-img-top" alt="Consultoría TI">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Soporte e Infraestructura TI</h5>
+                <p class="card-text">Asesoría en despliegue de servidores, control de versiones y mantenimiento preventivo de sistemas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

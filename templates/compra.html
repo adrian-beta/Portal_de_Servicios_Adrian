@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white fw-bold">Calculadora de Compra</div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('compra') }}">
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad de artículos</label>
+                        <input type="number" min="1" step="1" class="form-control" id="cantidad" name="cantidad" value="{{ resultado.cantidad if resultado else '' }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio unitario ($)</label>
+                        <input type="number" min="0.01" step="0.01" class="form-control" id="precio" name="precio" value="{{ resultado.precio if resultado else '' }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calcular Importe</button>
+                </form>
+
+                {% if resultado %}
+                <hr>
+                <div class="alert alert-success mb-0">
+                    <h5 class="alert-heading">Resultado de la Compra</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><strong>Cantidad capturada:</strong> {{ resultado.cantidad }} artículos</li>
+                        <li><strong>Precio unitario:</strong> ${{ "%.2f"|format(resultado.precio) }}</li>
+                        <li><strong>Subtotal:</strong> ${{ "%.2f"|format(resultado.subtotal) }}</li>
+                        <li><strong>Descuento (10% si es mayor a $1,000):</strong> ${{ "%.2f"|format(resultado.descuento) }}</li>
+                        <li class="fs-5 mt-2"><strong>Total a pagar:</strong> ${{ "%.2f"|format(resultado.total) }}</li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
