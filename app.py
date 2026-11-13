@@ -80,4 +80,4 @@ def contacto():
     return render_template('contacto.html', pagina='contacto')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
